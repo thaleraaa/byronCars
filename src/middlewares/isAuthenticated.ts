@@ -1,4 +1,4 @@
-import { verify } from "crypto";
+import { verify } from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
 import { Payload } from "../models/interfaces/User/Auth/PayLoad";
 
