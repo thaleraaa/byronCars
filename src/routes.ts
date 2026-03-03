@@ -8,6 +8,7 @@ import { DetailUserController } from "./controllers/User/DetailUserController";
 import { DeleteUserController } from "./controllers/User/DeleteUserController";
 import { EditUserController } from "./controllers/User/EditUserController";
 import { CreateCarController } from "./controllers/Car/CreateCarController";
+import { GetAllCarController } from "./controllers/Car/GetAllCarController";
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./tmp"));
@@ -25,5 +26,6 @@ router.put("/user/edit", isAuthenticated, new EditUserController().handle);
 
 //Car Router
 router.post("/car", isAuthenticated, upload.single("file"), new CreateCarController().handle);
+router.get("/cars", isAuthenticated, new GetAllCarController().handle);
 
 export { router };
