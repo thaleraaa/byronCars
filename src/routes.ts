@@ -7,6 +7,7 @@ import { isAuthenticated } from "./middlewares/isAuthenticated";
 import { DetailUserController } from "./controllers/User/DetailUserController";
 import { DeleteUserController } from "./controllers/User/DeleteUserController";
 import { EditUserController } from "./controllers/User/EditUserController";
+import { CreateCarController } from "./controllers/Car/CreateCarController";
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./tmp"));
@@ -21,5 +22,8 @@ router.post("/session", new AuthUserController().handle);
 router.get("/me", isAuthenticated, new DetailUserController().handle);
 router.delete("/user/remove", isAuthenticated, new DeleteUserController().handle);
 router.put("/user/edit", isAuthenticated, new EditUserController().handle);
+
+//Car Router
+router.post("/car", isAuthenticated, upload.single("file"), new CreateCarController().handle);
 
 export { router };
