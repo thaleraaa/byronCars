@@ -35,7 +35,7 @@ class CreateCarService {
             if (!price_per_day) {
                 throw new Error("Missing required field: price_per_day");
             }
-            if (!available) {
+            if (available === undefined || available === null) {
                 throw new Error("Missing required field: available");
             }
 
@@ -58,7 +58,7 @@ class CreateCarService {
                     name: name,
                     brand: brand,
                     price_per_day: +price_per_day,
-                    available: available == true || available == "true",
+                    available: String(available).toLowerCase() === "true",
                     user_id: user_id
                 },
                 select: {
