@@ -149,6 +149,149 @@
                     }
                 }
             }
+        },
+        "/v1/car": {
+            "post": {
+                "description": "Criar Carro",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "Dados necessarios para criação de um novo carro",
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestCreateCar"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseCreateCar"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/cars": {
+            "get": {
+                "description": "Dados de todos os carros",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseGetAllCar"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/cars/find": {
+            "get": {
+                "description": "Obter dados de um carro pelo nome",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Nome do carro",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseFindCar"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/car/edit": {
+            "put": {
+                "description": "Editar dados do carro",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestEditCar"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseEditCar"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/car/remove": {
+            "delete": {
+                "description": "Deletar Carro",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "car_id",
+                        "in": "query",
+                        "description": "ID do carro",
+                        "required": "true",
+                        "type": "string",
+                        "format": "uuid"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseEditCar"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -250,6 +393,215 @@
                     },
                     "email": {
                         "type": "string"
+                    }
+                }
+            },
+            "RequestCreateCar": {
+                "type": "object",
+                "properties": {
+                    "file": {
+                        "type": "string",
+                        "format": "binary"
+                    },
+                    "plate": {
+                        "type": "string"
+                    },
+                    "color": {
+                        "type": "string"
+                    },
+                    "year": {
+                        "type": "number"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "brand": {
+                        "type": "string"
+                    },
+                    "price_per_day": {
+                        "type": "number"
+                    },
+                    "available": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "ResponseCreateCar": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "color": {
+                        "type": "string"
+                    },
+                    "year": {
+                        "type": "integer"
+                    },
+                    "brand": {
+                        "type": "string"
+                    },
+                    "plate": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ResponseGetAllCar": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "image": {
+                            "type": "string"
+                        },
+                        "plate": {
+                            "type": "string"
+                        },
+                        "color": {
+                            "type": "string"
+                        },
+                        "year": {
+                            "type": "integer"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "brand": {
+                            "type": "string"
+                        },
+                        "price_per_day": {
+                            "type": "number"
+                        },
+                        "available": {
+                            "type": "boolean"
+                        },
+                        "created_at": {
+                            "type": "string",
+                            "format": "date-time"
+                        },
+                        "updated_at": {
+                            "type": "string",
+                            "format": "date-time"
+                        },
+                        "user_id": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "RequestFindCar": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ResponseFindCar": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "image": {
+                            "type": "string"
+                        },
+                        "plate": {
+                            "type": "string"
+                        },
+                        "color": {
+                            "type": "string"
+                        },
+                        "year": {
+                            "type": "integer"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "brand": {
+                            "type": "string"
+                        },
+                        "price_per_day": {
+                            "type": "number"
+                        },
+                        "available": {
+                            "type": "boolean"
+                        },
+                        "created_at": {
+                            "type": "string",
+                            "format": "date-time"
+                        },
+                        "updated_at": {
+                            "type": "string",
+                            "format": "date-time"
+                        },
+                        "user_id": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "RequestEditCar": {
+                "type": "object",
+                "properties": {
+                    "file": {
+                        "type": "string",
+                        "format": "binary"
+                    },
+                    "plate": {
+                        "type": "string"
+                    },
+                    "color": {
+                        "type": "string"
+                    },
+                    "year": {
+                        "type": "number"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "brand": {
+                        "type": "string"
+                    },
+                    "price_per_day": {
+                        "type": "number"
+                    },
+                    "available": {
+                        "type": "boolean"
+                    },
+                    "car_id": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ResponseEditCar": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "color": {
+                        "type": "string"
+                    },
+                    "year": {
+                        "type": "integer"
+                    },
+                    "brand": {
+                        "type": "string"
+                    },
+                    "plate": {
+                        "type": "string"
+                    },
+                    "price_per_day": {
+                        "type": "number"
+                    },
+                    "available": {
+                        "type": "boolean"
                     }
                 }
             }

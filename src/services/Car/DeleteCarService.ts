@@ -6,6 +6,15 @@ class DeleteCarService {
             const deletedCar = await prismaClient.car.delete({
                 where: {
                     id: car_id
+                },
+                select: {
+                    name: true,
+                    color: true,
+                    year: true,
+                    brand: true,
+                    plate: true,
+                    price_per_day: true,
+                    available: true
                 }
             });
 
