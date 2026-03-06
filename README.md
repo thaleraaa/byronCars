@@ -1,8 +1,8 @@
-# 🚗 Byron Cars - API de Aluguel de Carros
+# ByronCars - API de Aluguel de Carros
 
 API RESTful desenvolvida para gerenciamento de locação de veículos, construída como projeto final do curso de Capacitação Back-End.
 
-## 🛠️ Tecnologias
+## Tecnologias
 
 - **Node.js** + **TypeScript**
 - **Express** - Framework web
@@ -13,7 +13,7 @@ API RESTful desenvolvida para gerenciamento de locação de veículos, construí
 - **Multer** - Upload de imagens
 - **Swagger** - Documentação da API
 
-## 📋 Funcionalidades
+## Funcionalidades
 
 ### Usuários
 - ✅ Cadastro de usuários
@@ -29,7 +29,7 @@ API RESTful desenvolvida para gerenciamento de locação de veículos, construí
 - ✅ Edição de informações
 - ✅ Exclusão de veículos
 
-## 🔐 Segurança
+## Segurança
 
 - Autenticação JWT com middleware de verificação
 - Senhas criptografadas com bcryptjs
