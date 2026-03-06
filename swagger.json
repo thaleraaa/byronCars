@@ -202,6 +202,31 @@
                 }
             }
         },
+        "/v1/car/image": {
+            "get": {
+                "description": "Imagem do carro",
+                "parameters": [
+                    {
+                        "name": "image",
+                        "in": "query",
+                        "description": "Nome do arquivo do Carro",
+                        "required": "true",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "image/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseGetImageCar"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/v1/cars/find": {
             "get": {
                 "description": "Obter dados de um carro pelo nome",
@@ -491,6 +516,10 @@
                         }
                     }
                 }
+            },
+            "ResponseGetImageCar": {
+                "type": "string",
+                "format": "binary"
             },
             "RequestFindCar": {
                 "type": "object",
