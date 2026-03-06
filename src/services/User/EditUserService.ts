@@ -26,6 +26,10 @@ class EditUserService {
                 data: {
                     name: name,
                     email: email
+                },
+                select: {
+                    name: true,
+                    email: true
                 }
             });
 

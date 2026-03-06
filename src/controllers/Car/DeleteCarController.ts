@@ -6,7 +6,7 @@ class DeleteCarController {
         const car_id = request.query.car_id as string;
         const deleteCarService = new DeleteCarService();
         const deletedCar = await deleteCarService.execute(car_id);
-        return response.json(car_id);
+        return response.json(deletedCar);
     }
 }
 

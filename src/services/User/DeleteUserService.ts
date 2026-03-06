@@ -6,6 +6,11 @@ class DeleteUserService {
             const userRemoved = await prismaClient.user.delete({
                 where: {
                     id: user_id
+                },
+                select: {
+                    id: true,
+                    name: true,
+                    email: true
                 }
             });
 
