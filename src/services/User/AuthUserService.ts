@@ -22,7 +22,7 @@ class AuthUserService {
             throw new Error ("Email not exists!");
         }
 
-        const passwordValided = compare(password, user?.password);
+        const passwordValided = await compare(password, user?.password);
 
         if (!passwordValided) {
             throw new Error ("Wrong password!");
