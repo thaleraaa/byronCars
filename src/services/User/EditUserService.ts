@@ -15,9 +15,11 @@ class EditUserService {
                 where: {
                     email: email
                 }
-            })
-            if(emailAlready) {
-                throw new Error ("Email already exist!");
+            });
+
+
+            if(emailAlready && emailAlready.id !== user_id) {
+                throw new Error ("Email already exists!");
             }
             const editedUser = await prismaClient.user.update({
                 where: {
@@ -33,7 +35,7 @@ class EditUserService {
                 }
             });
 
-            return editedUser
+            return editedUser;
         }
     }
 }
