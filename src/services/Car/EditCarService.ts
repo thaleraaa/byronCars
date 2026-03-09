@@ -41,6 +41,17 @@ class EditCarService {
         if (available === undefined || available === null) {
             throw new Error("Missing required field: available");
         }
+
+        const plateAlready = await prismaClient.car.findFirst({
+            where: {
+                plate: plate
+            }
+        });
+
+        if(plateAlready && car_id !== plateAlready.id){
+            throw new Error ("Plate already exists!");
+        }
+
         const editedCar = await prismaClient.car.update({
             where: {
                 id: car_id
