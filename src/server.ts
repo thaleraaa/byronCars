@@ -33,5 +33,5 @@ app.get('/terms', (request: Request, response: Response) => {
 });
 
 app.listen(port, () => {
-    console.log("Servidor rodando na porta 3333 - Projeto Controle de Estoque curso NodeJs");
+    console.log("Servidor rodando na porta 3333 - Projeto byronCars");
 });

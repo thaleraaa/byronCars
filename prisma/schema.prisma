@@ -10,34 +10,34 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model User {
-  id String @id @default(uuid())
-  name String
-  email String
+  id       String @id @default(uuid())
+  name     String
+  email    String
   password String
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
-  cars Car[]
+  cars       Car[]
 }
 
 model Car {
-  id String @id @default(uuid())
-  image String
-  plate String
-  color String
-  year Int
-  name String
-  brand String
+  id            String  @id @default(uuid())
+  image         String
+  plate         String
+  color         String
+  year          Int
+  name          String
+  brand         String
   price_per_day Float
-  available Boolean
+  available     Boolean
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
-  user User @relation(fields: [user_id], references: [id])
+  user    User   @relation(fields: [user_id], references: [id])
   user_id String
-
 }
